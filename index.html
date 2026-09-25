@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Framewise, a graph-powered movie recommendation system built for BCSE302P Database Systems Lab.">
+  <title>Framewise | Graph-powered movie discovery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root{--ink:#f4f1eb;--muted:#a1a1a1;--paper:#0d0d0f;--cream:#18181b;--coral:#e50914;--yellow:#f5c518;--lavender:#70a8ff;--line:#2b2b30}
+    body{background:#0d0d0f;color:#f4f1eb}.sidebar{background:#111113;border-right:1px solid #242428}.brand-mark{background:#e50914}.profile-chip,.primary-nav{border-color:#2a2a2f}.nav-item.active,.nav-item:hover{background:#232326;color:#fff}.mood.active{background:#262629;color:#fff}.sidebar-label,.breadcrumb,.stats-strip span,.stats-note,.movie-info p{color:#85858b}.live-pill{border-color:#3c3c41;color:#aaa}.topbar{border-bottom:1px solid #19191c}.hero-copy{color:#a4a4a7}.hero h1 em{color:#e50914}.primary-btn{background:#e50914}.film-card{background:#191b22;box-shadow:17px 18px 0 rgba(0,0,0,.35)}.orbit{border-color:#34343a}.orbit-two{border-color:#705c28}.orbit-label{color:#77777e}.stats-strip,.stats-strip div{border-color:#2b2b30}.section-heading h2,.page-intro h1{color:#fff}.segment{color:#77777e}.segment.active{color:#fff;border-color:#e50914}.poster{background-size:cover;background-position:center;box-shadow:inset 0 -55px 40px rgba(0,0,0,.3)}.poster:before{background:linear-gradient(180deg,rgba(0,0,0,.05),transparent 45%,rgba(0,0,0,.35));mix-blend-mode:normal}.poster:after{display:none}.movie-badge{background:rgba(13,13,15,.82);color:#f4f1eb}.movie-info h3{color:#f4f1eb}.rating{color:#f5c518}.search-box{border-color:#55555a}.search-box input{color:#fff}.search-box input::placeholder{color:#77777e}.page-intro p:last-child{color:#99999e}.graph-panel{background:#111216}.analytics-card{background:#18181b;border-color:#29292d}.modal{background:#18181b;box-shadow:0 25px 80px #000}.modal-close{color:#aaa}.modal .modal-meta,.modal-copy{color:#a5a5aa}.rating-actions button{color:#eee;border-color:#3b3b42}.rating-actions button:hover{border-color:#e50914;color:#fff}.toast{background:#e50914}
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">F</span><span>framewise</span></div>
+      <div class="profile-chip"><div class="avatar">MC</div><div><strong>Meet's profile</strong><small>Curious cinephile</small></div><span class="online-dot"></span></div>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <button class="nav-item active" data-view="home"><span>⌂</span>Discover</button>
+        <button class="nav-item" data-view="library"><span>▤</span>My library <b id="library-count">4</b></button>
+        <button class="nav-item" data-view="network"><span>◎</span>Graph explorer</button>
+      </nav>
+      <div class="sidebar-label">Your mood</div>
+      <div class="mood-list"><button class="mood active">✦ <span>Surprise me</span></button><button class="mood">◒ <span>Something warm</span></button><button class="mood">◐ <span>Edge of my seat</span></button><button class="mood">○ <span>Quietly beautiful</span></button></div>
+      <div class="sidebar-foot"><div class="live-pill"><span></span> Neo4j demo mode</div><small>BCSE302P · Database Systems Lab</small></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><button class="mobile-menu" aria-label="Open menu">☰</button><div class="breadcrumb">DISCOVER <span>/</span> PERSONALIZED FOR YOU</div><div class="top-actions"><button class="icon-btn" title="Notifications">♢</button><button class="help-btn">?</button></div></header>
+      <section id="home-view" class="view active-view">
+        <div class="hero reveal"><div><p class="eyebrow">A recommendation system that thinks in connections</p><h1>Find the next<br><em>great story.</em></h1><p class="hero-copy">Your taste is a network, not a list. Framewise maps the people, genres, and ideas behind what you love.</p><button class="primary-btn" data-scroll="recommendations">Explore your picks <span>↗</span></button></div><div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="film-card"><div class="film-card-top"><span>NOW PLAYING</span><span>2024</span></div><div class="film-visual"><i></i><i></i><i></i><i></i></div><div class="film-title">Past Lives</div><div class="film-meta">Celine Song <span>·</span> Romance / Drama</div></div><div class="orbit-label label-a">shared<br>directors</div><div class="orbit-label label-b">your<br>taste</div></div></div>
+        <div class="stats-strip reveal"><div><strong>126</strong><span>connected nodes</span></div><div><strong>3.8k</strong><span>taste pathways</span></div><div><strong>94%</strong><span>recommendation confidence</span></div><div class="stats-note">Updated from your<br>latest rating <b>↗</b></div></div>
+        <div class="section-heading reveal" id="recommendations"><div><p class="eyebrow">The good stuff</p><h2>Picked for your orbit</h2></div><div class="segmented"><button class="segment active" data-mode="for-you">For you</button><button class="segment" data-mode="because">Because you liked it</button><button class="segment" data-mode="popular">Popular</button></div></div>
+        <div id="recommendation-grid" class="movie-grid reveal"></div>
+        <div class="section-heading search-heading reveal"><div><p class="eyebrow">Go looking</p><h2>Every story, connected</h2></div><div class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Search titles, actors, genres..." aria-label="Search movies"></div></div>
+        <div id="catalog-grid" class="movie-grid catalog-grid reveal"></div>
+      </section>
+      <section id="library-view" class="view"><div class="page-intro"><p class="eyebrow">Your shelf</p><h1>My library</h1><p>Movies you have rated, saved, or are still thinking about.</p></div><div id="library-grid" class="movie-grid"></div></section>
+      <section id="network-view" class="view"><div class="page-intro network-intro"><div><p class="eyebrow">Neo4j graph visualization</p><h1>Your taste, in context</h1><p>Explore the paths that connect your ratings to the wider movie universe.</p></div><div class="network-legend"><span><i class="legend-user"></i>You</span><span><i class="legend-movie"></i>Movie</span><span><i class="legend-genre"></i>Genre</span></div></div><div class="graph-panel"><canvas id="graph-canvas"></canvas><div class="graph-tooltip" id="graph-tooltip"></div><div class="graph-controls"><button id="reset-graph" title="Reset graph">↺</button><span>Drag nodes to explore</span></div></div><div class="analytics-row"><div class="analytics-card"><span class="analytics-icon">⌁</span><div><strong>2 hops</strong><small>Average discovery distance</small></div></div><div class="analytics-card"><span class="analytics-icon">✦</span><div><strong>0.82</strong><small>Personalization score</small></div></div><div class="analytics-card"><span class="analytics-icon">↗</span><div><strong>PageRank</strong><small>Analytics ready</small></div></div></div></section>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="movie-modal"><div class="modal"><button class="modal-close" aria-label="Close">×</button><div id="modal-content"></div></div></div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
