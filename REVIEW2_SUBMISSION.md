@@ -306,6 +306,16 @@ Open `http://localhost:8000` in a browser. Show the home screen, then click a mo
 >
 > Leave approximately 15 cm of space here. Capture the home screen or movie detail modal.
 
+**Captured screenshot:**
+
+<img src="screenshots/framewise-home.png" width="680" alt="Framewise application home screen">
+
+### Additional screenshot: Public GitHub repository
+
+**What this proves:** The source code repository is publicly available for evaluator access.
+
+<img src="screenshots/github-repository.png" width="680" alt="Public GitHub repository">
+
 ---
 
 ## 4. Advanced NoSQL Features Demonstrated
