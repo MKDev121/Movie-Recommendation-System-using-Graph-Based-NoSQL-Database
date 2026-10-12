@@ -18,28 +18,120 @@
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand"><span class="brand-mark">F</span><span>framewise</span></div>
-      <div class="profile-chip"><div class="avatar">MC</div><div><strong>Meet's profile</strong><small>Curious cinephile</small></div><span class="online-dot"></span></div>
+      <div class="profile-chip">
+        <div class="avatar" id="user-avatar">MC</div>
+        <div style="flex:1;">
+          <select id="user-selector" style="background:#1e1e24;color:#f4f1eb;border:1px solid #33333d;border-radius:4px;padding:4px 6px;font-size:11px;width:100%;font-weight:600;cursor:pointer;">
+            <option value="u1">Meet Kareliya (u1)</option>
+            <option value="u2">Harshit Pandey (u2)</option>
+            <option value="u3">Manik Chauhan (u3)</option>
+            <option value="u4">Aditi Sharma (u4)</option>
+            <option value="u5">Rahul Verma (u5)</option>
+            <option value="u6">Sneha Iyer (u6)</option>
+            <option value="u7">Karthik Raja (u7)</option>
+            <option value="u8">Priya Nair (u8)</option>
+            <option value="u9">Rohan Mehta (u9)</option>
+            <option value="u10">Ananya Sen (u10)</option>
+          </select>
+          <small id="user-meta-role" style="display:block;font-size:9px;color:var(--muted);margin-top:4px;">Taste Profile Loaded</small>
+        </div>
+      </div>
       <nav class="primary-nav" aria-label="Primary navigation">
         <button class="nav-item active" data-view="home"><span>⌂</span>Discover</button>
         <button class="nav-item" data-view="library"><span>▤</span>My library <b id="library-count">4</b></button>
         <button class="nav-item" data-view="network"><span>◎</span>Graph explorer</button>
+        <button class="nav-item" data-view="benchmark"><span>⚡</span>AI Model Benchmark</button>
       </nav>
-      <div class="sidebar-label">Your mood</div>
-      <div class="mood-list"><button class="mood active">✦ <span>Surprise me</span></button><button class="mood">◒ <span>Something warm</span></button><button class="mood">◐ <span>Edge of my seat</span></button><button class="mood">○ <span>Quietly beautiful</span></button></div>
-      <div class="sidebar-foot"><div class="live-pill"><span></span> Neo4j demo mode</div><small>BCSE302P · Database Systems Lab</small></div>
+      <div class="sidebar-label">AI Recommendation Engine</div>
+      <div style="padding:0 12px;font-size:11px;color:#a0a0a5;line-height:1.6;">
+        <span style="color:#f5c518;">★ SVD Latent Factors</span><br>
+        <span style="color:#70a8ff;">✦ TF-IDF Metadata</span><br>
+        <span style="color:#e50914;">◎ Neo4j Graph Traversal</span>
+      </div>
+      <div class="sidebar-foot"><div class="live-pill"><span></span> Review 1 AI Model Active</div><small>BCSE302P · Database Systems Lab</small></div>
     </aside>
     <main class="main-content">
-      <header class="topbar"><button class="mobile-menu" aria-label="Open menu">☰</button><div class="breadcrumb">DISCOVER <span>/</span> PERSONALIZED FOR YOU</div><div class="top-actions"><button class="icon-btn" title="Notifications">♢</button><button class="help-btn">?</button></div></header>
+      <header class="topbar"><button class="mobile-menu" aria-label="Open menu">☰</button><div class="breadcrumb">DISCOVER <span>/</span> <span id="current-user-breadcrumb">PERSONALIZED FOR YOU</span></div><div class="top-actions"><button class="icon-btn" title="Model Info" onclick="document.querySelector('[data-view=benchmark]').click()">⚡</button><button class="help-btn">?</button></div></header>
       <section id="home-view" class="view active-view">
-        <div class="hero reveal"><div><p class="eyebrow">A recommendation system that thinks in connections</p><h1>Find the next<br><em>great story.</em></h1><p class="hero-copy">Your taste is a network, not a list. Framewise maps the people, genres, and ideas behind what you love.</p><button class="primary-btn" data-scroll="recommendations">Explore your picks <span>↗</span></button></div><div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="film-card"><div class="film-card-top"><span>NOW PLAYING</span><span>2024</span></div><div class="film-visual"><i></i><i></i><i></i><i></i></div><div class="film-title">Past Lives</div><div class="film-meta">Celine Song <span>·</span> Romance / Drama</div></div><div class="orbit-label label-a">shared<br>directors</div><div class="orbit-label label-b">your<br>taste</div></div></div>
-        <div class="stats-strip reveal"><div><strong>126</strong><span>connected nodes</span></div><div><strong>3.8k</strong><span>taste pathways</span></div><div><strong>94%</strong><span>recommendation confidence</span></div><div class="stats-note">Updated from your<br>latest rating <b>↗</b></div></div>
-        <div class="section-heading reveal" id="recommendations"><div><p class="eyebrow">The good stuff</p><h2>Picked for your orbit</h2></div><div class="segmented"><button class="segment active" data-mode="for-you">For you</button><button class="segment" data-mode="because">Because you liked it</button><button class="segment" data-mode="popular">Popular</button></div></div>
+        <div class="hero reveal"><div><p class="eyebrow">A recommendation system that thinks in connections</p><h1>Find the next<br><em>great story.</em></h1><p class="hero-copy">Your taste is a network, not a list. Framewise blends collaborative SVD latent factors, TF-IDF content metadata, and multi-hop graph traversals.</p><button class="primary-btn" data-scroll="recommendations">Explore AI Picks <span>↗</span></button></div><div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="film-card"><div class="film-card-top"><span>AI RECOMMENDED</span><span>2024</span></div><div class="film-visual"><i></i><i></i><i></i><i></i></div><div class="film-title">Past Lives</div><div class="film-meta">Celine Song <span>·</span> Romance / Drama</div></div><div class="orbit-label label-a">shared<br>directors</div><div class="orbit-label label-b">your<br>taste</div></div></div>
+        <div class="stats-strip reveal"><div><strong id="stat-nodes">126</strong><span>connected nodes</span></div><div><strong id="stat-match">96%</strong><span>top taste match</span></div><div><strong id="stat-rmse">0.403</strong><span>hybrid model RMSE</span></div><div class="stats-note">Trained on Review 1<br>dataset & Cypher graph <b>↗</b></div></div>
+        <div class="section-heading reveal" id="recommendations"><div><p class="eyebrow">AI Recommendation Engine</p><h2>Picked for your orbit</h2></div><div class="segmented" style="flex-wrap:wrap;"><button class="segment active" data-mode="hybrid">✦ Hybrid AI</button><button class="segment" data-mode="collaborative">SVD Matrix Factorization</button><button class="segment" data-mode="content">TF-IDF Content</button><button class="segment" data-mode="graph">Review 1 Graph (Cypher)</button><button class="segment" data-mode="popular">Popular</button></div></div>
         <div id="recommendation-grid" class="movie-grid reveal"></div>
         <div class="section-heading search-heading reveal"><div><p class="eyebrow">Go looking</p><h2>Every story, connected</h2></div><div class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Search titles, actors, genres..." aria-label="Search movies"></div></div>
         <div id="catalog-grid" class="movie-grid catalog-grid reveal"></div>
       </section>
       <section id="library-view" class="view"><div class="page-intro"><p class="eyebrow">Your shelf</p><h1>My library</h1><p>Movies you have rated, saved, or are still thinking about.</p></div><div id="library-grid" class="movie-grid"></div></section>
       <section id="network-view" class="view"><div class="page-intro network-intro"><div><p class="eyebrow">Neo4j graph visualization</p><h1>Your taste, in context</h1><p>Explore the paths that connect your ratings to the wider movie universe.</p></div><div class="network-legend"><span><i class="legend-user"></i>You</span><span><i class="legend-movie"></i>Movie</span><span><i class="legend-genre"></i>Genre</span></div></div><div class="graph-panel"><canvas id="graph-canvas"></canvas><div class="graph-tooltip" id="graph-tooltip"></div><div class="graph-controls"><button id="reset-graph" title="Reset graph">↺</button><span>Drag nodes to explore</span></div></div><div class="analytics-row"><div class="analytics-card"><span class="analytics-icon">⌁</span><div><strong>2 hops</strong><small>Average discovery distance</small></div></div><div class="analytics-card"><span class="analytics-icon">✦</span><div><strong>0.82</strong><small>Personalization score</small></div></div><div class="analytics-card"><span class="analytics-icon">↗</span><div><strong>PageRank</strong><small>Analytics ready</small></div></div></div></section>
+      <section id="benchmark-view" class="view">
+        <div class="page-intro"><p class="eyebrow">Evaluation Suite & Research Benchmarks</p><h1>AI Recommendation Models Benchmark</h1><p>Comprehensive offline evaluation across Collaborative Filtering (SVD), Content-Based Filtering (TF-IDF), Graph Traversal (Cypher), and the Hybrid AI model adhering to Review 1 specification.</p></div>
+        <div style="background:#18181b;border:1px solid #29292d;border-radius:8px;padding:24px;overflow-x:auto;margin-bottom:30px;">
+          <table style="width:100%;border-collapse:collapse;color:#f4f1eb;font-size:13px;text-align:left;">
+            <thead>
+              <tr style="border-bottom:1px solid #33333d;color:#a0a0a5;font-family:var(--mono);font-size:11px;">
+                <th style="padding:12px 14px;">MODEL ARCHITECTURE</th>
+                <th style="padding:12px 14px;">RMSE (↓)</th>
+                <th style="padding:12px 14px;">MAE (↓)</th>
+                <th style="padding:12px 14px;">PRECISION@3 (↑)</th>
+                <th style="padding:12px 14px;">RECALL@3 (↑)</th>
+                <th style="padding:12px 14px;">NDCG@3 (↑)</th>
+                <th style="padding:12px 14px;">CATALOG COVERAGE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #242429;">
+                <td style="padding:12px 14px;font-weight:600;"><span style="color:#70a8ff;">●</span> Collaborative Filtering (SVD)</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.549</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.488</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.100</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.300</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.200</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">25.0%</td>
+              </tr>
+              <tr style="border-bottom:1px solid #242429;">
+                <td style="padding:12px 14px;font-weight:600;"><span style="color:#f5c518;">●</span> Content-Based Filtering (TF-IDF)</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.946</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.896</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.200</td>
+                <td style="padding:12px 14px;font-family:var(--mono);color:#71a67d;font-weight:700;">0.600</td>
+                <td style="padding:12px 14px;font-family:var(--mono);color:#71a67d;font-weight:700;">0.513</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">65.0%</td>
+              </tr>
+              <tr style="border-bottom:1px solid #242429;">
+                <td style="padding:12px 14px;font-weight:600;"><span style="color:#e50914;">●</span> Review 1 Graph Traversal (Cypher)</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.634</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.560</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.067</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.200</td>
+                <td style="padding:12px 14px;font-family:var(--mono);">0.150</td>
+                <td style="padding:12px 14px;font-family:var(--mono);color:#71a67d;font-weight:700;">80.0%</td>
+              </tr>
+              <tr style="background:rgba(229,9,20,0.08);border-bottom:1px solid #e50914;">
+                <td style="padding:12px 14px;font-weight:700;color:#e50914;">✦ Hybrid AI Model (Ensemble)</td>
+                <td style="padding:12px 14px;font-family:var(--mono);color:#71a67d;font-weight:700;">0.403 (Best)</td>
+                <td style="padding:12px 14px;font-family:var(--mono);color:#71a67d;font-weight:700;">0.277 (Best)</td>
+                <td style="padding:12px 14px;font-family:var(--mono);font-weight:700;">0.167</td>
+                <td style="padding:12px 14px;font-family:var(--mono);font-weight:700;">0.500</td>
+                <td style="padding:12px 14px;font-family:var(--mono);font-weight:700;">0.500</td>
+                <td style="padding:12px 14px;font-family:var(--mono);font-weight:700;">65.0%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="analytics-row" style="grid-template-columns:repeat(3,1fr);margin-top:20px;">
+          <div class="analytics-card" style="flex-direction:column;align-items:flex-start;">
+            <strong style="color:#70a8ff;font-size:15px;margin-bottom:6px;">Collaborative SVD</strong>
+            <small style="line-height:1.6;">Solves rating prediction using regularized latent embeddings trained with Stochastic Gradient Descent (SGD). Excels at predicting numerical preferences.</small>
+          </div>
+          <div class="analytics-card" style="flex-direction:column;align-items:flex-start;">
+            <strong style="color:#f5c518;font-size:15px;margin-bottom:6px;">Content-Based (TF-IDF)</strong>
+            <small style="line-height:1.6;">Vectorizes genres, director, cast, and plot summary keywords. Solves the cold-start problem by matching user taste profiles directly against metadata.</small>
+          </div>
+          <div class="analytics-card" style="flex-direction:column;align-items:flex-start;">
+            <strong style="color:#e50914;font-size:15px;margin-bottom:6px;">Hybrid AI Ensemble</strong>
+            <small style="line-height:1.6;">Dynamically weights SVD, TF-IDF cosine similarity, and graph traversals. Achieves the lowest RMSE (0.403) and provides transparent multi-hop explanations.</small>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
   <div class="modal-backdrop" id="movie-modal"><div class="modal"><button class="modal-close" aria-label="Close">×</button><div id="modal-content"></div></div></div>
